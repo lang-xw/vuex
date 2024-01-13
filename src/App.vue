@@ -27,6 +27,9 @@ function CNA() {
   store.dispatch('changeNameAction', {
     name: 'james',
     level: 100
+  }).then(res => {
+    console.log(res)
+    //触发函数会回调
   })
 }
 </script>

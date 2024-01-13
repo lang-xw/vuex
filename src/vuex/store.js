@@ -29,7 +29,11 @@ const store = createStore({
     //应用时，必须要依赖mutations
     actions: {
         changeNameAction(context, arg) {
-            context.commit('changeName', arg)
+            //返回一个promise,让我们知道什么时候执行结束
+            return new Promise((reslove, reject) => {
+                context.commit('changeName', arg)
+                reslove('Action结束了')
+            })
         }
     }
 })
