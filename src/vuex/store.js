@@ -28,7 +28,9 @@ const store = createStore({
     },
     //应用时，必须要依赖mutations
     actions: {
-
+        changeNameAction(context, arg) {
+            context.commit('changeName', arg)
+        }
     }
 })
 
