@@ -8,7 +8,13 @@ const store = createStore({
     }),
     //相当于methodds，是同步函数，方便监听数据变化
     mutations: {
-
+        increment(state, payload) {
+            state.counter += payload.add
+        },
+        changeName(state, payload) {
+            state.name = payload.name
+            state.level = payload.level
+        }
     },
     //相当于computed
     getters: {
