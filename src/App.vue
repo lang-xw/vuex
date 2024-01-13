@@ -1,47 +1,34 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { ref, computed } from 'vue';
+import { useStore, mapState } from 'vuex'
+import MapSetUp from './vuex/map函数在setup函数里.js'
+const title = ref("APP")
+
+const store = useStore()
+
+// 解构赋值
+const { name: sname } = store.state
+
+// mapState(['counter'])返回的是一个对象，里面是函数
+const { counter, name } = MapSetUp(mapState(['counter', 'name']))
+
 </script>
 
+<script>
+export default {
+  computed: {
+    ...mapState(['counter'])
+  }
+}
+</script>
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <h2>{{ title }}</h2>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+  <!-- 模板里引用store -->
+  <h3>{{ $store.state.counter }}--{{ sname }}</h3>
 
-  <main>
-    <TheWelcome />
-  </main>
+  <h3>{{ counter() }}--{{ name() }}</h3>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+<style scoped></style>
